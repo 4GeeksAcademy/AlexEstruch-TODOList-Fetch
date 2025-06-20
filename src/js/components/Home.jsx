@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //componentes
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
@@ -8,6 +8,27 @@ import TodoList from "./TodoList";
 const Home = () => {
 	//tasks -> array de tareas, setTasks -> funcion que actualiza el array
 	const [tasks, setTasks] = useState([]);
+
+	// Función para obtener tareas del usuario ya creado
+	const fetchTasks = () => {
+		fetch("https://playground.4geeks.com/todo/users/alexestruch")
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				}
+			})
+			.then((data) => {
+				console.log("Tareas cargadas:", data);
+				setTasks(data.todos || []);
+			})
+			.catch((error) => console.log("Error cargando tareas:", error));
+	};
+
+	// useEffect que solo carga las tareas (el usuario ya fue creado previamente)
+	useEffect(() => {
+		fetchTasks();
+	}, []);
+
 
 	//primero funcion de addTask; recibe taskText que si esta vacío o con espacio no hace nada, sino agrega a la lista
 	const addTask = (taskText) => {
