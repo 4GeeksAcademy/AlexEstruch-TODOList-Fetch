@@ -9,7 +9,7 @@ const Home = () => {
 	//tasks -> array de tareas, setTasks -> funcion que actualiza el array
 	const [tasks, setTasks] = useState([]);
 
-	// Función para obtener tareas del usuario ya creado
+	// Función para obtener tareas desde la API del usuario ya creado
 	const fetchTasks = () => {
 		fetch("https://playground.4geeks.com/todo/users/alexestruch")
 			.then((response) => {
@@ -24,7 +24,7 @@ const Home = () => {
 			.catch((error) => console.log("Error cargando tareas:", error));
 	};
 
-	// useEffect que solo carga las tareas (el usuario ya fue creado previamente)
+	// useEffect que solo carga las tareas cuando abrimos la pagina o la actualizamos
 	useEffect(() => {
 		fetchTasks();
 	}, []);
