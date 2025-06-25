@@ -3,10 +3,10 @@ import React from "react";
 import TodoItem from "./TodoItem";
 
 //recibe array de tareas -> tasks, y la funcion que elimina una tarea segun el indice
-const TodoList = ({ tasks, onDeleteTask }) => {
+const TodoList = ({ tasks, onDeleteTask, onToggleDone }) => {
   //verifico que el array no esté vacío, si lo estar retorna null, porque ya tengo el mensaje en el Home de tareas pendientes
-    if (tasks.length === 0) {
-    return null; 
+  if (tasks.length === 0) {
+    return null;
   };
 
   //mostramos la lista con <ul> y añado estilos de bootstrap
@@ -14,12 +14,12 @@ const TodoList = ({ tasks, onDeleteTask }) => {
   //en TodoItem añadimos cada campo del Item
   return (
     <ul className="list-group mt-3">
-      {tasks.map((task, index) => (
+      {tasks.map((task) => (
         <TodoItem
-          key={index}
-          index={index}
-          taskText={task}
+          key={task.id}
+          task={task}
           onDeleteTask={onDeleteTask}
+          onToggleDone={onToggleDone}
         />
       ))}
     </ul>

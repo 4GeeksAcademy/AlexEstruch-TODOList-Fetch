@@ -16,7 +16,7 @@ const TodoInput = ({onAddTask}) => {
 
     return (
         <input type="text" className="form-control" placeholder="Añadir nueva tarea" value={inputValor} 
-        onChange={(tecla) => setInputValor(tecla.target.value)} onKeyDown={handleKeyDown} />
+        onChange={(e) => setInputValor(e.target.value)} onKeyDown={handleKeyDown} />
     );
 };
 
